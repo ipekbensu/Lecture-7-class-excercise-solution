@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<div id="container"></div>
+
+<script>
+var apiKey = 'cd44503873bb4cab99f83ef6743e3c5e';
+var headlines = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + apiKey;
+
+var container = document.getElementById('container');
+
+async function fetchNews(){
+	var res = await fetch(headlines);
+	var json = await res.json();
+
+	json.articles.forEach(article => {
+		console.log(article);
+		var image = '<img src="' + article.urlToImage + '" width="200">';
+		container.innerHTML += image;
+	});
+}
+fetchNews();
+
+</script>
+</html>
